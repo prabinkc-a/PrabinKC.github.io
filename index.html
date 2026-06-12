@@ -14,7 +14,13 @@
     </script>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>PrabinKC - AI Native Builder</title>
+    <title>Prabin KC — AI-Native Builder &amp; Data Analyst</title>
+    <meta name="description" content="Portfolio of Prabin KC — AI-native builder and data analyst. Computer Science student at Youngstown State University shipping clinical SaaS platforms, e-commerce systems, and data pipelines."/>
+    <meta property="og:title" content="Prabin KC — AI-Native Builder &amp; Data Analyst"/>
+    <meta property="og:description" content="Shipping clinical SaaS platforms, e-commerce systems, and data pipelines with AI-native workflows."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="./Allevia.png"/>
+    <meta name="theme-color" content="#161308"/>
     <link rel="icon" href="./Logo.png" type="image/png" />
     <!-- Tailwind CSS with Forms and Container Queries -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -80,7 +86,7 @@
                       "DEFAULT": "0.125rem",
                       "lg": "0.25rem",
                       "xl": "0.5rem",
-                      "full": "0.75rem"
+                      "full": "9999px"
               },
               "spacing": {
                       "margin-desktop": "80px",
@@ -267,6 +273,65 @@
           .floating {
               animation: float 6s ease-in-out infinite;
           }
+
+          /* Staggered card entrance — fill-mode backwards so hover transforms work after it finishes */
+          .scroll-reveal.is-visible .glass-card {
+              animation: card-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+              animation-delay: var(--d, 0s);
+          }
+          @keyframes card-in {
+              from { opacity: 0; transform: translateY(28px); }
+          }
+
+          .gradient-text {
+              background: linear-gradient(100deg, var(--color-primary-accent) 10%, #ff9d3f 55%, var(--color-secondary-text));
+              -webkit-background-clip: text;
+              background-clip: text;
+              -webkit-text-fill-color: transparent;
+              color: transparent;
+          }
+
+          ::selection {
+              background: var(--color-primary-accent);
+              color: var(--color-bg-base);
+          }
+
+          ::-webkit-scrollbar { width: 10px; }
+          ::-webkit-scrollbar-track { background: var(--color-bg-base); }
+          ::-webkit-scrollbar-thumb {
+              background: var(--color-surface-container);
+              border-radius: 8px;
+              border: 2px solid var(--color-bg-base);
+          }
+          ::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+
+          :focus-visible {
+              outline: 2px solid var(--color-primary-accent);
+              outline-offset: 2px;
+          }
+
+          /* Anchor targets clear the fixed nav */
+          section[id], #contact { scroll-margin-top: 110px; }
+
+          .nav-link.active { color: var(--color-primary-accent); }
+
+          .header-scrolled {
+              background-color: var(--color-hud-bg) !important;
+              box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+          }
+
+          @keyframes scroll-hint {
+              0%, 100% { transform: translateY(0); opacity: 0.5; }
+              50% { transform: translateY(6px); opacity: 1; }
+          }
+          .scroll-hint-icon { animation: scroll-hint 2.2s ease-in-out infinite; }
+
+          @media (prefers-reduced-motion: reduce) {
+              html { scroll-behavior: auto; }
+              .floating, .scroll-hint-icon, .animate-pulse, .animate-ping { animation: none !important; }
+              .scroll-reveal { opacity: 1; transform: none; transition: none; }
+              .scroll-reveal.is-visible .glass-card { animation: none; }
+          }
       </style>
       <!-- Three.js and GLTFLoader -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -280,8 +345,8 @@
     <!-- Fixed WebGL 3D Sun Layer -->
     <div id="three-canvas-container"></div>
 
-    <!-- Fixed Telemetry HUD (Top Right on Mobile, Mid Right on Desktop) -->
-    <div class="fixed bottom-6 right-6 z-40 md:bottom-8 md:right-8">
+    <!-- Fixed Telemetry HUD (desktop only — keeps mobile uncluttered) -->
+    <div class="fixed bottom-8 right-8 z-40 hidden md:block">
         <div class="glass-card p-4 rounded-xl flex items-center gap-4 border border-primary/20 hud-bg backdrop-blur-xl max-w-[280px] md:max-w-xs transition-all duration-500 hover:border-primary/40">
             <!-- Rotating HUD Dial -->
             <div class="relative w-12 h-12 flex-shrink-0 flex items-center justify-center border border-dashed border-primary/30 rounded-full" id="telemetry-hud">
@@ -320,10 +385,10 @@
       <div class="flex items-center gap-4 px-5 py-2 rounded-full backdrop-blur-xl border border-outline-variant header-bg">
         <!-- Nav links: hidden on mobile -->
         <nav class="hidden md:flex items-center gap-5">
-          <a class="font-label-sm text-[11px] tracking-widest uppercase text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#wisdom">Education</a>
-          <a class="font-label-sm text-[11px] tracking-widest uppercase text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#artifacts">Projects</a>
-          <a class="font-label-sm text-[11px] tracking-widest uppercase text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#nairutya">Skills</a>
-          <a class="font-label-sm text-[11px] tracking-widest uppercase text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#vayu">Experience</a>
+          <a class="nav-link font-label-sm text-[11px] tracking-widest uppercase text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#wisdom">Education</a>
+          <a class="nav-link font-label-sm text-[11px] tracking-widest uppercase text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#artifacts">Projects</a>
+          <a class="nav-link font-label-sm text-[11px] tracking-widest uppercase text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#nairutya">Skills</a>
+          <a class="nav-link font-label-sm text-[11px] tracking-widest uppercase text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#vayu">Experience</a>
         </nav>
         <!-- Divider -->
         <div class="w-px h-3.5 bg-outline-variant shrink-0 hidden md:block"></div>
@@ -332,9 +397,9 @@
           <span class="material-symbols-outlined text-[16px]" id="theme-toggle-icon">light_mode</span>
         </button>
         <!-- Mobile menu toggle -->
-        <div class="md:hidden text-primary cursor-pointer shrink-0" onclick="toggleMobileMenu()">
+        <button class="md:hidden text-primary cursor-pointer shrink-0" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
           <span class="material-symbols-outlined text-[18px]" id="menu-icon">menu</span>
-        </div>
+        </button>
       </div>
     </header>
 
@@ -354,27 +419,48 @@
         <section class="relative min-h-[75vh] flex items-center mb-section-gap" id="hero">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter w-full relative z-10">
                 <div class="flex flex-col justify-center">
-                    <div class="font-label-sm text-label-sm text-primary tracking-widest uppercase mb-4">
-                        Developer Portfolio Ingested
+                    <div class="font-label-sm text-label-sm text-primary tracking-widest uppercase mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-primary inline-block animate-pulse"></span>
+                        AI-Native Builder · Data Analyst
                     </div>
-                    <h1 class="font-display-xl text-[42px] md:text-[64px] font-bold text-on-background leading-none mb-6">
-                        Building scalable <span class="text-primary">AI &amp; Data Systems</span>
+                    <h1 class="font-display-xl text-[42px] md:text-[64px] font-bold text-on-background leading-[1.05] mb-6">
+                        Building scalable <span class="gradient-text">AI &amp; Data Systems</span>
                     </h1>
                     <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-10">
-                        Hello, I'm Prabin KC. A Computer Science student (GPA 3.78) at Youngstown State University building real things—shipping full clinical SaaS platforms and high-conversion e-commerce architectures by leveraging AI workflows.
+                        Hello, I'm Prabin KC. A Computer Science student at Youngstown State University building real things—shipping full clinical SaaS platforms and high-conversion e-commerce architectures by leveraging AI workflows.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#artifacts" class="inline-flex items-center justify-center bg-primary text-background font-label-sm text-[11px] tracking-widest uppercase font-bold px-7 py-3 rounded-full hover:bg-primary/90 transition-colors shadow-primary-glow">
+                        <a href="#artifacts" class="inline-flex items-center justify-center bg-primary text-background font-label-sm text-[11px] tracking-widest uppercase font-bold px-7 py-3 rounded-full hover:bg-primary/90 hover:-translate-y-0.5 transition-all shadow-primary-glow">
                           View My Work
                         </a>
-                        <a href="./Prabin_KC_Master_CV.docx" download class="inline-flex items-center justify-center gap-2 bg-transparent border border-primary text-primary font-label-sm text-[11px] tracking-widest uppercase font-bold px-7 py-3 rounded-full hover:bg-primary/10 transition-colors backdrop-blur-sm">
+                        <a href="./Prabin_KC_Master_CV.docx" download class="inline-flex items-center justify-center gap-2 bg-transparent border border-primary text-primary font-label-sm text-[11px] tracking-widest uppercase font-bold px-7 py-3 rounded-full hover:bg-primary/10 hover:-translate-y-0.5 transition-all backdrop-blur-sm">
                           <span class="material-symbols-outlined text-[16px]">download</span> Download Resume
                         </a>
+                    </div>
+                    <!-- Quick proof points -->
+                    <div class="flex flex-wrap gap-x-12 gap-y-6 mt-12 pt-8 border-t border-outline-variant/20 max-w-lg">
+                        <div>
+                            <div class="font-display-xl text-[26px] md:text-[30px] font-bold text-on-background leading-none">3.78</div>
+                            <div class="font-label-sm text-[10px] tracking-widest uppercase text-on-surface-variant mt-2">GPA / 4.0</div>
+                        </div>
+                        <div>
+                            <div class="font-display-xl text-[26px] md:text-[30px] font-bold text-on-background leading-none">02</div>
+                            <div class="font-label-sm text-[10px] tracking-widest uppercase text-on-surface-variant mt-2">Live Products</div>
+                        </div>
+                        <div>
+                            <div class="font-display-xl text-[26px] md:text-[30px] font-bold text-on-background leading-none">2027</div>
+                            <div class="font-label-sm text-[10px] tracking-widest uppercase text-on-surface-variant mt-2">B.S. Comp Sci</div>
+                        </div>
                     </div>
                 </div>
                 <!-- Empty spacer columns for the fixed 3D Sun model placement -->
                 <div class="hidden md:block"></div>
             </div>
+            <!-- Scroll hint -->
+            <a href="#wisdom" aria-label="Scroll to next section" class="absolute bottom-0 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors z-10">
+                <span class="font-label-sm text-[9px] tracking-[0.25em] uppercase">Scroll</span>
+                <span class="material-symbols-outlined text-[20px] scroll-hint-icon">keyboard_arrow_down</span>
+            </a>
         </section>
 
         <!-- Mercury Section (Ishanya / North-East - Wisdom & Intellect) -->
@@ -384,14 +470,14 @@
                     <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Academic Credentials</h2>
                     <p class="font-label-sm text-label-sm text-primary tracking-widest uppercase mb-6 flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>
-                        Education &amp; Certifications
+                        01 · Education &amp; Certifications
                     </p>
                     <p class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-6">
                         Academic qualifications, ABET computer science studies, and professional certifications representing core technical foundations.
                     </p>
                 </div>
                 <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-gutter">
-                    <div class="glass-card p-8 rounded-xl floating" style="animation-delay: 0s;">
+                    <div class="glass-card p-8 rounded-xl" style="--d: 0s;">
                         <div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center mb-6 icon-bg">
                             <span class="material-symbols-outlined text-primary">school</span>
                         </div>
@@ -407,9 +493,9 @@
                             </p>
                         </div>
                     </div>
-                    <div class="glass-card p-8 rounded-xl floating" style="animation-delay: 1s;">
+                    <div class="glass-card p-8 rounded-xl" style="--d: 0.12s;">
                         <div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center mb-6 icon-bg">
-                            <span class="material-symbols-outlined text-primary">award</span>
+                            <span class="material-symbols-outlined text-primary">workspace_premium</span>
                         </div>
                         <h3 class="font-title-md text-title-md text-on-background mb-2">Intellectual Seals</h3>
                         <div class="font-label-sm text-[11px] text-primary mb-3 tracking-wider uppercase font-bold">Certifications</div>
@@ -440,7 +526,7 @@
                 <div>
                     <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Featured Projects</h2>
                     <p class="font-label-sm text-label-sm text-primary tracking-widest uppercase mt-2">
-                        System Execution
+                        02 · System Execution
                     </p>
                 </div>
                 <p class="font-label-sm text-label-sm text-secondary-text tracking-widest uppercase hidden md:flex items-center gap-2">
@@ -450,10 +536,10 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
                 <!-- Project Card 1: Allevia -->
-                <div class="glass-card rounded-xl overflow-hidden group flex flex-col h-full min-h-[460px] floating" style="animation-delay: 0.5s;">
+                <div class="glass-card rounded-xl overflow-hidden group flex flex-col h-full min-h-[460px]" style="--d: 0s;">
                     <div class="h-44 w-full bg-surface-container-lowest relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent mix-blend-overlay z-10 pointer-events-none"></div>
-                        <img src="./Allevia.png" alt="Allevia Intake SaaS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <img src="./Allevia.png" alt="Allevia Intake SaaS" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
@@ -472,10 +558,10 @@
                     </div>
                 </div>
                 <!-- Project Card 2: Calm Style -->
-                <div class="glass-card rounded-xl overflow-hidden group flex flex-col h-full min-h-[460px] floating" style="animation-delay: 1.5s;">
+                <div class="glass-card rounded-xl overflow-hidden group flex flex-col h-full min-h-[460px]" style="--d: 0.12s;">
                     <div class="h-44 w-full bg-surface-container-lowest relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent mix-blend-overlay z-10 pointer-events-none"></div>
-                        <img src="./CalmStyle.png" alt="Calm Style Store" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <img src="./CalmStyle.png" alt="Calm Style Store" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
@@ -494,7 +580,7 @@
                     </div>
                 </div>
                 <!-- Project Card 3: Fault Detection -->
-                <div class="glass-card rounded-xl overflow-hidden group flex flex-col h-full min-h-[460px] floating" style="animation-delay: 2.5s;">
+                <div class="glass-card rounded-xl overflow-hidden group flex flex-col h-full min-h-[460px]" style="--d: 0.24s;">
                     <div class="h-44 w-full bg-surface-container-lowest relative">
                         <div class="absolute inset-0 bg-gradient-to-br from-tertiary/20 to-transparent mix-blend-overlay"></div>
                         <div class="w-full h-full flex items-center justify-center text-outline-variant group-hover:scale-110 transition-transform duration-700">
@@ -527,7 +613,7 @@
                     <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Core Expertise</h2>
                     <p class="font-label-sm text-label-sm text-primary tracking-widest uppercase mb-6 flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-primary inline-block animate-pulse"></span>
-                        Technical Skills
+                        03 · Technical Skills
                     </p>
                     <p class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-6">
                         Grounded database design, clean software development, and validation pipelines for stable runtime operations.
@@ -535,7 +621,7 @@
                 </div>
                 <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-gutter">
                     <!-- AI & Software Card -->
-                    <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+                    <div class="glass-card p-6 rounded-xl flex flex-col justify-between" style="--d: 0s;">
                         <div>
                             <h3 class="font-title-md text-[18px] text-on-background mb-4 border-b border-outline-variant/10 pb-2 font-bold tracking-wide">AI &amp; Engineering</h3>
                             <ul class="font-body-md text-body-md text-on-surface-variant space-y-3 font-medium text-[13px]">
@@ -547,7 +633,7 @@
                         </div>
                     </div>
                     <!-- Data & Databases Card -->
-                    <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+                    <div class="glass-card p-6 rounded-xl flex flex-col justify-between" style="--d: 0.12s;">
                         <div>
                             <h3 class="font-title-md text-[18px] text-on-background mb-4 border-b border-outline-variant/10 pb-2 font-bold tracking-wide">Data Systems</h3>
                             <ul class="font-body-md text-body-md text-on-surface-variant space-y-3 font-medium text-[13px]">
@@ -559,7 +645,7 @@
                         </div>
                     </div>
                     <!-- Analytics & Tools Card -->
-                    <div class="glass-card p-6 rounded-xl flex flex-col justify-between">
+                    <div class="glass-card p-6 rounded-xl flex flex-col justify-between" style="--d: 0.24s;">
                         <div>
                             <h3 class="font-title-md text-[18px] text-on-background mb-4 border-b border-outline-variant/10 pb-2 font-bold tracking-wide">BI &amp; Operations</h3>
                             <ul class="font-body-md text-body-md text-on-surface-variant space-y-3 font-medium text-[13px]">
@@ -582,7 +668,7 @@
                     <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Work Experience</h2>
                     <p class="font-label-sm text-label-sm text-primary tracking-widest uppercase mb-6 flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>
-                        Proven Track Record
+                        04 · Proven Track Record
                     </p>
                     <p class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-6">
                         Professional engineering and analytics roles focused on automating workflows, auditing complex databases, and improving operational metrics.
@@ -591,7 +677,7 @@
                 
                 <div class="md:col-span-8 flex flex-col gap-6">
                     <!-- Experience Card 1 -->
-                    <div class="glass-card p-6 md:p-8 rounded-xl floating" style="animation-delay: 0s;">
+                    <div class="glass-card p-6 md:p-8 rounded-xl" style="--d: 0s;">
                         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
                             <div>
                                 <h3 class="font-title-md text-title-md text-on-background font-bold">Student Office Assistant</h3>
@@ -621,7 +707,7 @@
                     </div>
 
                     <!-- Experience Card 2 -->
-                    <div class="glass-card p-6 md:p-8 rounded-xl floating" style="animation-delay: 0.5s;">
+                    <div class="glass-card p-6 md:p-8 rounded-xl" style="--d: 0.15s;">
                         <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
                             <div>
                                 <h3 class="font-title-md text-title-md text-on-background font-bold">Data Analyst</h3>
@@ -660,7 +746,7 @@
                         <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Open Channel</h2>
                         <p class="font-label-sm text-label-sm text-primary tracking-widest uppercase mb-6 flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>
-                            Establish Connection
+                            05 · Establish Connection
                         </p>
                         <p class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-8">
                             Ready to collaborate on AI systems, data products, or engineering challenges. Let's build something that matters.
@@ -683,25 +769,26 @@
                     <!-- Right: Form -->
                     <div class="md:col-span-8">
                         <div class="glass-card p-8 rounded-xl">
-                            <form class="space-y-6" onsubmit="event.preventDefault(); alert('Message transmitted across cosmic frequencies.');">
+                            <form class="space-y-6" id="contact-form">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     <div>
-                                        <label class="block font-label-sm text-label-sm text-primary uppercase mb-2">Your Name</label>
-                                        <input type="text" class="w-full input-bg border-b border-outline-variant/30 focus:border-primary text-on-background px-4 py-3 outline-none transition-colors rounded-none" placeholder="e.g. Hiring Manager" required>
+                                        <label class="block font-label-sm text-label-sm text-primary uppercase mb-2" for="contact-name">Your Name</label>
+                                        <input type="text" id="contact-name" name="name" class="w-full input-bg border-b border-outline-variant/30 focus:border-primary text-on-background px-4 py-3 outline-none transition-colors rounded-none" placeholder="e.g. Hiring Manager" required>
                                     </div>
                                     <div>
-                                        <label class="block font-label-sm text-label-sm text-primary uppercase mb-2">Email Address</label>
-                                        <input type="email" class="w-full input-bg border-b border-outline-variant/30 focus:border-primary text-on-background px-4 py-3 outline-none transition-colors rounded-none" placeholder="e.g. partner@agency.com" required>
+                                        <label class="block font-label-sm text-label-sm text-primary uppercase mb-2" for="contact-email">Email Address</label>
+                                        <input type="email" id="contact-email" name="email" class="w-full input-bg border-b border-outline-variant/30 focus:border-primary text-on-background px-4 py-3 outline-none transition-colors rounded-none" placeholder="e.g. partner@agency.com" required>
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block font-label-sm text-label-sm text-primary uppercase mb-2">Project Details / Message</label>
-                                    <textarea rows="4" class="w-full input-bg border-b border-outline-variant/30 focus:border-primary text-on-background px-4 py-3 outline-none transition-colors rounded-none" placeholder="Describe your project, role, or opportunity..." required></textarea>
+                                    <label class="block font-label-sm text-label-sm text-primary uppercase mb-2" for="contact-message">Project Details / Message</label>
+                                    <textarea rows="4" id="contact-message" name="message" class="w-full input-bg border-b border-outline-variant/30 focus:border-primary text-on-background px-4 py-3 outline-none transition-colors rounded-none" placeholder="Describe your project, role, or opportunity..." required></textarea>
                                 </div>
-                                <div class="pt-2">
-                                    <button type="submit" class="bg-primary text-background font-label-sm text-label-sm font-bold px-8 py-3 rounded-full hover:bg-primary/90 transition-all shadow-primary-glow">
+                                <div class="pt-2 flex items-center gap-4 flex-wrap">
+                                    <button type="submit" class="bg-primary text-background font-label-sm text-label-sm font-bold px-8 py-3 rounded-full hover:bg-primary/90 hover:-translate-y-0.5 transition-all shadow-primary-glow">
                                         Transmit Signal
                                     </button>
+                                    <span id="contact-form-status" class="font-label-sm text-[11px] tracking-widest uppercase text-primary opacity-0 transition-opacity duration-500" aria-live="polite"></span>
                                 </div>
                             </form>
                         </div>
@@ -724,8 +811,13 @@
             <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#nairutya">Skills</a>
             <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#vayu">Experience</a>
         </div>
-        <div class="font-body-md text-[12px] text-on-surface-variant/50">
-            © 2026 PRABIN KC. ALL RIGHTS RESERVED.
+        <div class="flex items-center gap-5">
+            <div class="font-body-md text-[12px] text-on-surface-variant/50">
+                © 2026 PRABIN KC. ALL RIGHTS RESERVED.
+            </div>
+            <a href="#hero" aria-label="Back to top" class="w-9 h-9 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 hover:-translate-y-0.5 transition-all">
+                <span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+            </a>
         </div>
     </footer>
 
@@ -801,6 +893,47 @@
 
         document.querySelectorAll('.scroll-reveal').forEach(el => {
             observer.observe(el);
+        });
+
+        // Highlight the nav link of the section currently in view
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -55% 0px' });
+
+        ['wisdom', 'artifacts', 'nairutya', 'vayu'].forEach(id => {
+            const section = document.getElementById(id);
+            if (section) sectionObserver.observe(section);
+        });
+
+        // Solidify the nav pill once the page is scrolled
+        const headerPill = document.querySelector('header > div');
+        function updateHeaderState() {
+            headerPill.classList.toggle('header-scrolled', window.scrollY > 40);
+        }
+        window.addEventListener('scroll', updateHeaderState, { passive: true });
+        updateHeaderState();
+
+        // Contact form: compose a prefilled email instead of a dead-end alert
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+            const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+            const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
+            window.location.href = `mailto:prabinkhadka1396@gmail.com?subject=${subject}&body=${body}`;
+            const status = document.getElementById('contact-form-status');
+            status.textContent = 'Opening your email client…';
+            status.classList.remove('opacity-0');
+            setTimeout(() => status.classList.add('opacity-0'), 5000);
         });
 
         // Advanced Starfield Background with subtle nebulae and auspicious constellations

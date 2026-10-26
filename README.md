@@ -1,6 +1,6 @@
 # Prabin KC - Portfolio Site
 
-This repository contains the source code for my personal portfolio, accessible at [PrabinKC.github.io](https://mlucifer13.github.io/PrabinKC.github.io/) (or your custom domain if configured).
+This repository contains the source code for my personal portfolio, accessible at [PrabinKC.github.io](https://prabinkc-a.github.io/PrabinKC.github.io/) (or your custom domain if configured).
 
 ## Structure
 - `index.html`: The main landing page, built with Tailwind CSS. Showcases projects, skills, and contact information.
